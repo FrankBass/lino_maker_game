@@ -50,7 +50,7 @@ const specialKeys = {
     221: 'CloseBraket',
     222: 'SingleQuote'
 };
-//The y2 variable dictates how high up the unit starts
+
 //La variable y2 dicte à quelle hauteur l'unité démarre
 const LEVEL_ENEMIES = [
     [{
@@ -138,7 +138,7 @@ const LEVEL_PLAYER_CHARACTERS = [{
     y2: 120
 }, {
     name: 'ninja',
-    x2: 390, //Ideally this would call on the canvas width to place the character in the center--however, canvas.width is only created later.
+    x2: 390, //Idéalement, cela ferait appel à la largeur du canevas pour placer le personnage au centre - cependant, canvas.width n'est créé que plus tard.
     y2: 120
 }];
 
@@ -169,7 +169,7 @@ const LEVEL_CLOUDS = [{
 const font = 'Share Tech Mono';
 const totalLevels = 5; //Cette constante est très importante: elle indique au jeu le nombre de niveaux dont il dispose.
 const coinWidth = 40;
-const LEVEL_COMPLETION_TIME = 3000;
+const LEVEL_COMPLETION_TIME = 1000;//gerer le temps de jeu part niveaux
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 50); //Chacun de nos tableaux doit pouvoir contenir au maximum 2 objets/seconde.
 const FLYING = 0; //Ce type de mouvement monte et descend au fur et à mesure qu'il se déplace, allant de droite à gauche.
 const WALKING = 1; //Ce type de mouvement va en ligne droite de droite à gauche ou, dans certains cas, ne bouge pas.
@@ -303,7 +303,7 @@ function muteMusic() {
             musicToggled = true;
         }
     }
-    updateSoundPng(); //Ensures that the mute button in the options page remains updated
+    updateSoundPng(); //Garantit que le bouton de sourdine de la page d'options reste à jour
 }
 
 function pauseGame() {
@@ -389,7 +389,7 @@ function KeyUp(event) {
             break;
         case userKeys.DOWN:
         case userKeys.S:
-            if (playerCharacter.hitGround && playerCharacter.duckCooldown === true) { //this if statement is used so that the playercharacter doesnt increase in size when DOWN or S is pressed while character is in the air
+            if (playerCharacter.hitGround && playerCharacter.duckCooldown === true) { //cette instruction if est utilisée pour que la taille du personnage du joueur n'augmente pas lorsque DOWN ou S est enfoncé alors que le personnage est dans les airs
                 playerCharacter.height = playerCharacter.height * 2;
                 playerCharacter.duckCooldown = false;
             }
@@ -446,7 +446,7 @@ function startLevel() {
     playerCharacter.init(60, 70, `Pictures/${char.name}.png`, char.x2, char.y2, 'image', WALKING, undefined, char.name);
     playerCharacter.jumpCooldown = false; //Ces temps de recharge permettent à notre système de savoir si une certaine clé a ré
     playerCharacter.leftCooldown = false; //enfoncé - "false"signifie que la touche n 'est pas en cours de recharge et doit être
-    playerCharacter.rightCooldown = false; //acknowledged normally.
+    playerCharacter.rightCooldown = false; //reconnu normalement.
     playerCharacter.duckCooldown = false;
 
     //background / background
@@ -471,7 +471,7 @@ function startLevel() {
     highscoreBoard.init('20px', 'Consolas', 'black', 20, 40, 'text', WALKING);
     highscoreBoard.text = 'HIGHSCORE:' + highscore;
 
-    //startArrow
+    //lancer les fleche d'indication au debut de chauqe niveaux
     startArrow1 = new Component();
     startArrow2 = new Component();
     startArrow3 = new Component();
@@ -711,9 +711,12 @@ function Component() {
         this.hitBottom();
     };
 
+
+
+
     // poser le sol sur toile
     this.hitBottom = function() {
-        var rockbottom = gameArea.canvas.height - this.height - 150;
+        var rockbottom = gameArea.canvas.height - this.height - 50; // gerer la hauteur du personnage par rapport au background
         if (this.y > rockbottom) {
             this.y = rockbottom;
             this.hitGround = true;
@@ -924,8 +927,8 @@ function updateGameArea() {
             musicToggled = false;
         }
     }
-    //when frame number reaches 3000 (point at which obstacles end) end level
-    //check current level, if more than 5 (because there are five levels currently), show game complete modal
+    //lorsque le numéro de trame atteint 3000 (point auquel les obstacles se terminent) niveau de fin
+      //vérifier le niveau actuel, s'il y en a plus de 5 (parce qu'il y a actuellement cinq niveaux), afficher le jeu complet modal
     if (gameArea.time >= LEVEL_COMPLETION_TIME) {
         gameArea.stop();
         if (currentLevel === totalLevels) gameComplete();
@@ -959,11 +962,15 @@ function updateGameArea() {
         }
     }
 
-    coinRotationValue++; //We update the rotation value for the coins before updating the coins
+    coinRotationValue++; //Nous mettons à jour la valeur de rotation des pièces avant de mettre à jour les pièces
     if (coinRotationValue >= 40) {
         coinRotationValue = 0;
     }
-    //loop for coin collision
+
+
+
+
+    //boucle pour collision de pièces
     for (let i = 0; i < coins.length; i++) {
         if (coins[i].isAlive()) {
             if (playerCharacter.crashWith(coins[i])) {
@@ -987,7 +994,7 @@ function updateGameArea() {
         }
     }
 
-    //clear canvas before each update
+    //toile claire avant chaque mise à jour
     gameArea.clear();
 
     //update background
@@ -995,7 +1002,7 @@ function updateGameArea() {
     background.update();
     background2.update();
 
-    //Cloud update--doesn't display on level 5, which is indoors
+    //Mise à jour cloud : ne s'affiche pas au niveau 5, qui est à l'intérieur
     if (currentLevel !== 5) {
         for (let i = 0; i < clouds.length; i++) {
             clouds[i].x += 0.5 - backgroundDx;
@@ -1025,11 +1032,11 @@ function updateGameArea() {
     timeBoard.update();
     timeBoardImg.update();
 
-    //increment frame number for timer
+    //incrémenter le numéro d'image pour la minuterie
     incrementFrameNumber(2);
     incrementTime(2);
 
-    //LevelDisplay update
+    //Mise à jour de l'affichage de niveau
     levelDisplay.text = 'Level ' + currentLevel;
     levelDisplay.update();
 
@@ -1048,30 +1055,30 @@ function updateGameArea() {
     correctCharacterPos();
     playerCharacter.update();
 
-    //After every 35 iterations, flyUp flips, so that FLYING enemies start moving in the opposite direction.
+    //Toutes les 35 itérations, flyUp retourne, de sorte que les ennemis VOLANTS commencent à se déplacer dans la direction opposée.
     if (flyCounter === 35) {
         flyUp = !flyUp;
         flyCounter = 0;
     }
 
-    //flyCounter increases in every iteration
+    //flyCounter augmente à chaque itération
     flyCounter++;
 
-    //loop to set speed of enemy characters
+    //boucle pour régler la vitesse des personnages ennemis
     for (let i = 0; i < enemyCharacters.length; i++) {
         if (enemyCharacters[i].isAlive()) {
-            //check if level is 3 or greater
-            //vary the speed of enemy characters if level is 3 or greater
-            if (currentLevel >= 3 && enemyCharacters[i].moveType !== FLYING) { //The flying enemies are fast enough, thank you
+            //vérifier si le niveau est de 3 ou plus
+            //faire varier la vitesse des personnages ennemis si le niveau est supérieur ou égal à 3
+            if (currentLevel >= 3 && enemyCharacters[i].moveType !== FLYING) {
                 if (currentLevel === 5 && enemyCharacters[i].moveType === REVERSED) {
-                    enemyCharacters[i].x -= (-4 + backgroundDx); //These enemies enter from the left
+                    enemyCharacters[i].x -= (-4 + backgroundDx); //Ces ennemis entrent par la gauche
                 } else {
                     enemyCharacters[i].x += (-4 - backgroundDx);
                 }
             } else {
                 enemyCharacters[i].x += (-2 - backgroundDx);
             }
-            //This tells bird enemies whether to go up or down
+            //Cela indique aux oiseaux ennemis s'ils doivent monter ou descendre
             if (enemyCharacters[i].moveType === FLYING) {
                 if (flyUp === true) {
                     enemyCharacters[i].y += 3;
@@ -1079,11 +1086,11 @@ function updateGameArea() {
                     enemyCharacters[i].y += -3;
                 }
             }
-            //This rotates enemies of type 2--currently just the Sword enemies in level 5
+            // Cela fait pivoter les ennemis de type 2 - actuellement uniquement les ennemis de l'épée au niveau 5
             if (enemyCharacters[i].moveType === ROTATING) {
                 enemyCharacters[i].angle += 10 * Math.PI / 180;
             }
-        } else { // if dead; enemy will be 'squeezed', fall to the ground and fade away. Feel free to improve by adding further animation.
+        } else { // si mort ; l'ennemi sera "pressé", tombera au sol et s'évanouira. N'hésitez pas à vous améliorer en ajoutant d'autres animations.
             enemyCharacters[i].height = enemyCharacters[i].initHeight / 3;
             enemyCharacters[i].x -= backgroundDx;
             enemyCharacters[i].y += 10;
@@ -1095,8 +1102,8 @@ function updateGameArea() {
         }
     }
 
-    //loop to set speed of coin characters
-    //if the coin is not alive and taken by player, make the coin disappear
+    // boucle pour définir la vitesse des caractères de pièce
+    //si la pièce n'est pas vivante et prise par le joueur, faire disparaître la pièce
     for (let i = 0; i < coins.length; i++) {
         if (coins[i].isAlive()) {
             coins[i].x += -2 - backgroundDx;
@@ -1116,12 +1123,13 @@ function incrementScore(value) {
     currentScore += value;
 }
 
-function incrementTime(value) { //Both increments time and updates onscreen timer value
+function incrementTime(value) {//Les deux incrémentent le temps et mettent à jour la valeur de la minuterie à l'écran
     gameArea.time += value;
     timeLeft = (LEVEL_COMPLETION_TIME - gameArea.time) / 100;
 }
 
-//Stops player character from constantly moving after button move pressed
+
+// Empêche le personnage du joueur de se déplacer constamment après avoir appuyé sur le bouton
 function stopMove() {
     playerCharacter.speedX = 0;
     playerCharacter.speedY = 0;
@@ -1143,7 +1151,7 @@ function moveUp(state) {
     if (state === 'hit') {
         if (playerCharacter.speedY >= -3) {
             playerCharacter.speedY = -7;
-        } else { //If the player character is already moving up, we instead just make them move slightly faster
+        } else { // Si le personnage du joueur progresse déjà, nous le faisons simplement se déplacer légèrement plus rapidement
             playerCharacter.speedY -= 4;
         }
         playerCharacter.hitGround = false;
@@ -1157,8 +1165,9 @@ function moveUp(state) {
             jump.load();
         }
     } else if (playerCharacter.doubleJumpAllowed === true) {
-        /* Currently doesn't do anything, since the initial UP/W
-         *      key logic won't allow for the moveUP function to be called. */
+
+/* Ne fait actuellement rien, depuis le UP/W initial
+       * La logique des touches ne permet pas d'appeler la fonction moveUP. */
         playerCharacter.speedY = -7;
         playerCharacter.doubleJumpAllowed = false;
     }

@@ -1,6 +1,6 @@
 body {
-  background-color: #d6d7d8;
-  font-family: 'Share Tech Mono', monospace;
+  background-color: black;
+  font-family: 'Heebo';
 }
 
 #banner {
@@ -11,7 +11,7 @@ body {
 }
 
 canvas {
-  border:1px solid #d3d3d3;
+  border:1px solid black;
   background-color: #f1f1f1;
   width: 90%;
   margin-left: 5%;
@@ -58,7 +58,7 @@ canvas {
 
 .button {
   display: inline-block;
-  /* padding: 18px 28px; */
+  /*padding: 18px 28px;*/
   font-size: 12px;
   cursor: pointer;
   text-align: center;
