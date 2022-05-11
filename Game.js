@@ -609,12 +609,12 @@ function Component() {
         this.height = height;
 
         //changer la position des composants
-        this.speedX = 0;
+        this.speedX = 0;//changerla vitesse de deplace du perso
         this.speedY = 0;
         this.x = x;
         this.y = y;
         this.orignX = x;
-        this.gravity = 1.5;
+        this.gravity = 0.8; //changer la  hauteur des bons que fait le perso
         //indique si le personnage est au sol ou non
         this.hitGround = true;
         this.doubleJumpAllowed = true;
@@ -716,7 +716,7 @@ function Component() {
 
     // poser le sol sur toile
     this.hitBottom = function() {
-        var rockbottom = gameArea.canvas.height - this.height - 50; // gerer la hauteur du personnage par rapport au background
+        var rockbottom = gameArea.canvas.height - this.height - 50; // gère la hauteur du personnage par rapport au background
         if (this.y > rockbottom) {
             this.y = rockbottom;
             this.hitGround = true;
@@ -882,7 +882,7 @@ function flashCoinScore() {
 
 function flashStartArrow() {
     switchArrow++;
-    if (switchArrow < 30) {
+    if (switchArrow < 70) {
         startArrow3.setSrc('Pictures/goldArrow.png');
         startArrow2.setSrc('Pictures/blackArrow.png');
         startArrow1.setSrc('Pictures/blackArrow.png');
@@ -1090,7 +1090,7 @@ function updateGameArea() {
             if (enemyCharacters[i].moveType === ROTATING) {
                 enemyCharacters[i].angle += 10 * Math.PI / 180;
             }
-        } else { // si mort ; l'ennemi sera "pressé", tombera au sol et s'évanouira. N'hésitez pas à vous améliorer en ajoutant d'autres animations.
+        } else { // si mort ; l'ennemi sera "pressé", tombera au sol et s'évanouira.
             enemyCharacters[i].height = enemyCharacters[i].initHeight / 3;
             enemyCharacters[i].x -= backgroundDx;
             enemyCharacters[i].y += 10;
@@ -1221,7 +1221,7 @@ function onMouseUp() {
 }
 
 function duckMouseUp() {
-    if (playerCharacter.hitGround && playerCharacter.duckCooldown === true) { //this if statement is used so that the playercharacter doesnt increase in size when DOWN or S is pressed while character is in the air
+    if (playerCharacter.hitGround && playerCharacter.duckCooldown === true) { //cette instruction if est utilisée pour que la taille du personnage du joueur n'augmente pas lorsque DOWN ou S est pressé alors que le personnage est en l'air
         playerCharacter.height = playerCharacter.height * 2;
         playerCharacter.duckCooldown = false;
     }
