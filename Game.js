@@ -534,8 +534,8 @@ function startLevel() {
 var gameArea = {
     init: function() {
         this.canvas = document.getElementById('canvas');
-        this.canvas.width = 900;
-        this.canvas.height = 400;
+        this.canvas.width = 1000;// GERER LA TAILLE DE L'IMAGE DE JEU
+        this.canvas.height = 500;// GERER LA TAILLE DE L'IMAGE DE JEU
         this.context = this.canvas.getContext('2d');
 
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
@@ -1077,6 +1077,8 @@ function updateGameArea() {
                 }
             } else {
                 enemyCharacters[i].x += (-2 - backgroundDx);
+
+
             }
             //Cela indique aux oiseaux ennemis s'ils doivent monter ou descendre
             if (enemyCharacters[i].moveType === FLYING) {
