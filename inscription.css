@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200i,400&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 75vh;
+    background: url('img/game.jpg') no-repeat fixed center/cover;
+    /* background: rgb(72, 157, 228);
+    background: linear-gradient(0deg, rgba(72, 157, 228, 1) 0%, rgba(13, 222, 235, 1) 100%); */
+    background-position: center;
+    font-family: "Poppins", Arial;
+    overflow: hidden;
+}
+
+#box {
+    position: relative;
+    top: -70px;
+    margin: 12% auto;
+    padding: 5% 0 0;
+    width: 450px;
+    height: 450px;
+    background: rgb(193, 106, 213);
+    background: linear-gradient(0deg, rgba(193, 106, 213, 1) 0%, rgb(115, 97, 244) 100%);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    dispaly: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+    width: 380px;
+    margin: auto;
+    margin-top: -80px;
+}
+
+.input-group {
+    position: absolute;
+    top: 150px;
+    width: 280px;
+    transition: .5s;
+}
+
+.input-field {
+    width: 100%;
+    padding: 20px;
+    margin: 5px 0;
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+}
+
+p {
+    color: white;
+    margin: auto;
+}
+
+p a {
+    color: #FFD12B;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#login {
+    left: 74px;
+}
+
+#login p {
+    margin: auto;
+    margin-top: 20px;
+}
+
+#pes {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.btn {
+    text-align: center;
+    width: 60%;
+    margin-left: 70px;
+    margin-top: 15px;
+    padding: 20px 30px;
+    cursor: pointer;
+    display: block;
+    background: rgb(255, 114, 119);
+    background: linear-gradient(0deg, rgba(255, 114, 119, 1) 0%, rgba(249, 81, 154, 1) 100%);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+    position: absolute;
+    top: 440px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: rgb(247, 115, 33);
+    background: linear-gradient(0deg, rgba(247, 115, 33, 1) 0%, rgba(250, 208, 91, 1) 100%);
+    color: white;
+    transform: translateY(-2px);
+}
