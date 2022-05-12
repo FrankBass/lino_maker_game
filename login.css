@@ -25,6 +25,13 @@
         height: auto;
     }
     
+    #logo {
+        position: absolute;
+        left: 150px;
+        top: 93px;
+        width: 900px;
+    }
+    
     #login-button {
         cursor: pointer;
         position: absolute;

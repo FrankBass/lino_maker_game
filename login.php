@@ -58,7 +58,7 @@
 <body>
     <main>
         <div id="login-button">
-            <img src="https://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png">
+            <img src="img/profil.png" alt="">
         </img>
         </div>
         <div id="logo">
@@ -81,7 +81,7 @@
             <span id="forgotten">Forgotten password</span>
             </div>
         </form>
-        <a class="inp" href="inscription.php">Créer un compte</a>
+         <a href="inscription.php">Créer un compte</a>
         </div>
 
         <!-- Forgotten Password Container -->

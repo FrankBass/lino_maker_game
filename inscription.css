@@ -21,16 +21,9 @@ body {
     padding: 5% 0 0;
     width: 450px;
     height: 450px;
-    background: rgb(193, 106, 213);
-    background: linear-gradient(0deg, rgba(193, 106, 213, 1) 0%, rgb(115, 97, 244) 100%);
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    background: rgba(3, 3, 3, 0.25);
+    box-shadow: 1px 1px 50px #000;
     dispaly: flex;
     align-items: center;
     justify-content: center;
