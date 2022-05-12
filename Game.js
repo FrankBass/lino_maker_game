@@ -53,60 +53,86 @@ const specialKeys = {
 
 //La variable y2 dicte à quelle hauteur l'unité démarre
 const LEVEL_ENEMIES = [
+
+  //enmemies level 1
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
+        width: 64,
+        height: 56,
+        y2: 405//gerer la hauteur du personnage par rapoort au sol
+    },{
         name: 'zombie',
-        width: 40,
+        width: 50,
         height: 45,
-        y2: 205
+        y2: 400 //gerer la hauteur du personnage par rapoort au sol
     }],
+
+
+
+//enmemies level 2
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
+        width: 84,
+        height: 76,
+        y2: 400
+    },{
         name: 'BlackBlob',
         width: 60,
         height: 53,
-        y2: 197
+        y2: 370
+    },{
+      name: 'SpinningSword',
+      width: 80,
+      height: 14,
+      y2: 170
     }],
+
+
+
+//enmemies level 3
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
+        width: 64,
+        height: 56,
+        y2: 400
+    },{
+      name: 'SpinningSword',
+      width: 80,
+      height: 14,
+      y2: 170
+    },{
         name: 'SlidingSkull',
         width: 60,
         height: 50,
-        y2: 200
+        y2: 400
     }],
+
+
+//enmemies level 4
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
+        width: 284,
+        height: 206,
+        y2: 250
+    }, {
+        name: 'CyclopsCrab',
+        width: 60,
+        height: 37,
+        y2: 400
+    }],
+
+
+//enmemies level 5
+    [{
+        name: 'FloatingFish',
+        width: 64,
+        height: 56,
         y2: 200
     }, {
         name: 'CyclopsCrab',
         width: 60,
         height: 37,
-        y2: 220
-    }],
-    [{
-        name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
-        name: 'CyclopsCrab',
-        width: 60,
-        height: 37,
-        y2: 220
+        y2: 400
     }, {
         name: 'SpinningSword',
         width: 80,
@@ -116,14 +142,16 @@ const LEVEL_ENEMIES = [
         name: 'ScarletStabber',
         width: 70,
         height: 60,
-        y2: 185
+        y2: 400
     }]
 ];
 
+
+
 const LEVEL_PLAYER_CHARACTERS = [{
     name: 'good_guy',
-    x2: 100,
-    y2: 120
+    x2: 200,
+    y2: 220
 }, {
     name: 'good_girl',
     x2: 100,
@@ -614,7 +642,7 @@ function Component() {
         this.x = x;
         this.y = y;
         this.orignX = x;
-        this.gravity = 0.8; //changer la  hauteur des bons que fait le perso
+        this.gravity = 0.7; //changer la  hauteur des bons que fait le perso
         //indique si le personnage est au sol ou non
         this.hitGround = true;
         this.doubleJumpAllowed = true;
