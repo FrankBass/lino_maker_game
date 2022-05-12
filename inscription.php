@@ -82,6 +82,7 @@
                     <input type="password" name="mdp" id="mdp" class="input-field" required>
                     <br><br>
                     <input type="submit" class="btn" value="S'inscrire">
+
                  </div>
             </form>
              <a style=" color:rgb(247, 115, 33); position:absolute; top:430px; left:183px" href="login.php">Connexion</a>

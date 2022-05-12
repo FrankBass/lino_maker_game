@@ -23,8 +23,9 @@
         if(isset($_SESSION['membre'])){
     ?>  
     <div style="display:flex; position:absolute; top: 0px; left:1007px;">
-    <h1 class="user">Bienvenue <?php echo $_SESSION ['membre']['prenom']. ' '. $_SESSION ['membre']['nom'] ;?></h1>
+    <h1 class="user"><?php echo $_SESSION ['membre']['prenom']. ' '. $_SESSION ['membre']['nom'] ;?></h1>
         <a class="btn" href="?action=deconnexion">Déconnexion</a> 
+        <!-- <a class="btn" href="statistiques.php">Mes statistique</a> -->
     </div> 
     
     <?php
@@ -43,7 +44,6 @@
 
 <!-- Banner -->
 <img id="banner" src="Pictures/banner.png">
-
 <!--Audio elements-->
 <audio id="bgm" style="display: none" controls>
     <source src="Audio/bgnd_mus.flac" type="audio/flac">

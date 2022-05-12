@@ -169,7 +169,7 @@ const LEVEL_CLOUDS = [{
 const font = 'Share Tech Mono';
 const totalLevels = 5; //Cette constante est très importante: elle indique au jeu le nombre de niveaux dont il dispose.
 const coinWidth = 40;
-const LEVEL_COMPLETION_TIME = 1000;//gerer le temps de jeu part niveaux
+const LEVEL_COMPLETION_TIME = 1000; //gerer le temps de jeu part niveaux
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 50); //Chacun de nos tableaux doit pouvoir contenir au maximum 2 objets/seconde.
 const FLYING = 0; //Ce type de mouvement monte et descend au fur et à mesure qu'il se déplace, allant de droite à gauche.
 const WALKING = 1; //Ce type de mouvement va en ligne droite de droite à gauche ou, dans certains cas, ne bouge pas.
@@ -609,7 +609,7 @@ function Component() {
         this.height = height;
 
         //changer la position des composants
-        this.speedX = 0;//changerla vitesse de deplace du perso
+        this.speedX = 0; //changerla vitesse de deplace du perso
         this.speedY = 0;
         this.x = x;
         this.y = y;
@@ -928,7 +928,7 @@ function updateGameArea() {
         }
     }
     //lorsque le numéro de trame atteint 3000 (point auquel les obstacles se terminent) niveau de fin
-      //vérifier le niveau actuel, s'il y en a plus de 5 (parce qu'il y a actuellement cinq niveaux), afficher le jeu complet modal
+    //vérifier le niveau actuel, s'il y en a plus de 5 (parce qu'il y a actuellement cinq niveaux), afficher le jeu complet modal
     if (gameArea.time >= LEVEL_COMPLETION_TIME) {
         gameArea.stop();
         if (currentLevel === totalLevels) gameComplete();
@@ -1123,7 +1123,7 @@ function incrementScore(value) {
     currentScore += value;
 }
 
-function incrementTime(value) {//Les deux incrémentent le temps et mettent à jour la valeur de la minuterie à l'écran
+function incrementTime(value) { //Les deux incrémentent le temps et mettent à jour la valeur de la minuterie à l'écran
     gameArea.time += value;
     timeLeft = (LEVEL_COMPLETION_TIME - gameArea.time) / 100;
 }
@@ -1166,8 +1166,8 @@ function moveUp(state) {
         }
     } else if (playerCharacter.doubleJumpAllowed === true) {
 
-/* Ne fait actuellement rien, depuis le UP/W initial
-       * La logique des touches ne permet pas d'appeler la fonction moveUP. */
+        /* Ne fait actuellement rien, depuis le UP/W initial
+         * La logique des touches ne permet pas d'appeler la fonction moveUP. */
         playerCharacter.speedY = -7;
         playerCharacter.doubleJumpAllowed = false;
     }

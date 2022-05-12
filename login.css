@@ -1,111 +1,241 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:200i,400&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    height: 75vh;
-    background: url('img/game.jpg') no-repeat fixed center/cover;
-    /* background: rgb(72, 157, 228);
-    background: linear-gradient(0deg, rgba(72, 157, 228, 1) 0%, rgba(13, 222, 235, 1) 100%); */
-    background-position: center;
-    font-family: "Poppins", Arial;
-    overflow: hidden;
-}
-
-#box {
-    margin: 12% auto;
-    /* padding: 5% 0 0; */
-    width: 450px;
-    height: 450px;
-    background: rgb(193, 106, 213);
-    background: linear-gradient(0deg, rgba(193, 106, 213, 1) 0%, rgb(115, 97, 244) 100%);
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    dispaly: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    bottom: 70px;
-}
-
-#logo {
-    width: 380px;
-    margin: auto;
-    margin-top: -10px;
-}
-
-.input-group {
-    position: absolute;
-    top: 150px;
-    width: 280px;
-    transition: .5s;
-}
-
-.input-field {
-    width: 100%;
-    padding: 20px;
-    margin: 5px 0;
-    outline: none;
-    border-radius: 10px;
-    border: none;
-    font-size: 15px;
-}
-
-p {
-    color: white;
-    margin: auto;
-}
-
-p a {
-    color: #FFD12B;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-#login {
-    left: 74px;
-}
-
-#login p {
-    margin: auto;
-    margin-top: 20px;
-}
-
-#pes {
-    margin-top: 50px;
-    text-align: center;
-}
-
-.btn {
-    text-align: center;
-    width: 60%;
-    margin-left: 70px;
-    margin-top: 15px;
-    padding: 20px 30px;
-    cursor: pointer;
-    display: block;
-    background: rgb(255, 114, 119);
-    background: linear-gradient(0deg, rgba(255, 114, 119, 1) 0%, rgba(249, 81, 154, 1) 100%);
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    color: white;
-}
-
-a {
-    text-decoration: none;
-}
-
-.btn:hover {
-    background: rgb(247, 115, 33);
-    background: linear-gradient(0deg, rgba(247, 115, 33, 1) 0%, rgba(250, 208, 91, 1) 100%);
-    color: white;
-    transform: translateY(-2px);
-}
+    @import url('https://fonts.googleapis.com/css?family=Poppins:200i,400&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        height: 75vh;
+        background: url('img/game.jpg') no-repeat fixed center/cover;
+        /* background: rgb(72, 157, 228);
+        background: linear-gradient(0deg, rgba(72, 157, 228, 1) 0%, rgba(13, 222, 235, 1) 100%); */
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        overflow: hidden;
+        font-family: "Poppins", Arial;
+        overflow: hidden;
+    }
+    
+    img {
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: auto;
+    }
+    
+    #login-button {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 30px;
+        margin: auto;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(3, 3, 3, .8);
+        overflow: hidden;
+        opacity: 0.4;
+        box-shadow: 10px 10px 30px #000;
+    }
+    /* Login container */
+    
+    #container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 260px;
+        height: 260px;
+        border-radius: 5px;
+        background: rgba(3, 3, 3, 0.25);
+        box-shadow: 1px 1px 50px #000;
+        display: none;
+    }
+    
+    .close-btn {
+        position: absolute;
+        cursor: pointer;
+        line-height: 18px;
+        top: 3px;
+        right: 3px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        border-radius: 10px;
+        opacity: .2;
+        -webkit-transition: all 2s ease-in-out;
+        -moz-transition: all 2s ease-in-out;
+        -o-transition: all 2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .close-btn:hover {
+        opacity: .5;
+    }
+    /* Heading */
+    
+    h1 {
+        font-family: 'Open Sans Condensed', sans-serif;
+        position: relative;
+        margin-top: 0px;
+        text-align: center;
+        font-size: 40px;
+        color: #ddd;
+        text-shadow: 3px 3px 10px #000;
+    }
+    /* Inputs */
+    
+    a,
+    input {
+        font-family: 'Open Sans Condensed', sans-serif;
+        text-decoration: none;
+        position: relative;
+        width: 80%;
+        display: block;
+        margin: 9px auto;
+        font-size: 17px;
+        color: #fff;
+        border-radius: 5px;
+        padding: 8px;
+        border: none;
+        background: rgba(3, 3, 3, .1);
+        -webkit-transition: all 2s ease-in-out;
+        -moz-transition: all 2s ease-in-out;
+        -o-transition: all 2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    input:focus {
+        outline: none;
+        box-shadow: 3px 3px 10px #333;
+        background: rgba(3, 3, 3, .18);
+    }
+    /* Placeholders */
+    
+     ::-webkit-input-placeholder {
+        color: #ddd;
+    }
+    
+     :-moz-placeholder {
+        /* Firefox 18- */
+        color: red;
+    }
+    
+     ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: red;
+    }
+    
+     :-ms-input-placeholder {
+        color: #333;
+    }
+    /* Link */
+    
+    a {
+        text-align: center;
+        padding: 4px 8px;
+        background: rgb(247, 115, 33);
+    }
+    
+    a:hover {
+        opacity: 0.7;
+    }
+    
+    .inp {
+        text-align: center;
+        padding: 4px 8px;
+        border-radius: 25px;
+    }
+    
+    .inp:hover {
+        opacity: 0.7;
+    }
+    
+    #remember-container {
+        position: relative;
+        margin: -5px 20px;
+    }
+    
+    .checkbox {
+        position: relative;
+        cursor: pointer;
+        -webkit-appearance: none;
+        padding: 5px;
+        border-radius: 4px;
+        background: rgba(3, 3, 3, .2);
+        display: inline-block;
+        width: 16px;
+        height: 15px;
+    }
+    
+    .checkbox:checked:active {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .checkbox:checked {
+        background: rgba(3, 3, 3, .4);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.5);
+        color: #fff;
+    }
+    
+    .checkbox:checked:after {
+        content: '\2714';
+        font-size: 10px;
+        position: absolute;
+        top: 0px;
+        left: 4px;
+        color: #fff;
+    }
+    
+    #remember {
+        position: absolute;
+        font-size: 13px;
+        font-family: 'Hind', sans-serif;
+        color: rgba(255, 255, 255, .5);
+        top: 7px;
+        left: 20px;
+    }
+    
+    #forgotten {
+        position: absolute;
+        font-size: 12px;
+        font-family: 'Hind', sans-serif;
+        color: rgba(255, 255, 255, .2);
+        right: 0px;
+        top: 8px;
+        cursor: pointer;
+        -webkit-transition: all 2s ease-in-out;
+        -moz-transition: all 2s ease-in-out;
+        -o-transition: all 2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    #forgotten:hover {
+        color: rgba(255, 255, 255, .6);
+    }
+    
+    #forgotten-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 260px;
+        height: 180px;
+        border-radius: 10px;
+        background: rgba(3, 3, 3, 0.25);
+        box-shadow: 1px 1px 50px #000;
+        display: none;
+    }
+    
+    .orange-btn {
+        background: rgba(87, 198, 255, .5);
+    }

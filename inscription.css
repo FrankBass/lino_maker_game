@@ -94,7 +94,7 @@ p a {
     display: block;
     background: rgb(255, 114, 119);
     background: linear-gradient(0deg, rgba(255, 114, 119, 1) 0%, rgba(249, 81, 154, 1) 100%);
-    border-radius: 5px;
+    border-radius: 30px;
     border: none;
     outline: none;
     color: white;

@@ -52,25 +52,52 @@
     <link rel="shortcut icon" href="img/LINO MAKER.png" type="image/x-icon">
     <link rel="stylesheet" href="login.css">
     <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
 <body>
     <main>
-        <div id="box">
-            <div id="logo">
-                <img src='img/LINO MAKER.png' border='0' alt='logo2' id="logo">
-            </div>
-            <form id="login" class="input-group" method="post">
-                <input type="emailt" name="email" id="email" placeholder="EMAIL" class="input-field" required>
-                <input type="password" name="mdp" id="mdp" placeholder="PASSWORD" class="input-field">
-                <input type="submit" class="btn" value="Se connecter">
-                <div id="pes">
-                    <p>MOT DE PASS OUBLIE ?<a href="#"> RECUPERER</a></p>
-                    <p>PAS DE COMPTE ?<a href="inscription.php"> CREER</a></p>
-                </div>
-            </form>
+        <div id="login-button">
+            <img src="https://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png">
+        </img>
         </div>
+        <div id="logo">
+            <img src='img/LINO MAKER.png' border='0' alt='logo2' id="logo">
+        </div>
+        <div id="container">
+        <h1>Log In</h1>
+        <span class="close-btn">
+            <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+        </span>
+
+        <form method="post">
+            <input type="email" name="email" placeholder="Votre email">
+            <input type="password" name="mdp" placeholder="Votre password">
+            <input class="inp" type="submit" value="LANCEZ VOUS">
+            <input class="inp" type="reset"value="RESET">
+            <div id="remember-container">
+            <input type="checkbox" id="checkbox-2-1" class="checkbox" checked="checked"/>
+            <span id="remember">Remember me</span>
+            <span id="forgotten">Forgotten password</span>
+            </div>
+        </form>
+        <a class="inp" href="inscription.php">Créer un compte</a>
+        </div>
+
+        <!-- Forgotten Password Container -->
+        <div id="forgotten-container">
+        <h1>Forgotten</h1>
+        <span class="close-btn">
+            <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+        </span>
+
+        <form>
+            <input type="email" name="email" placeholder="Votre email">
+            <input type="reset" class="orange-btn" value="Get new password">
+        </form>
+
     </main>
+    <script src="login.js"></script>
 </body>
 
 </html>

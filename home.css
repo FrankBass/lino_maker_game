@@ -16,7 +16,7 @@
     outline: none;
     color: white;
     position: absolute;
-    right: 1120px;
+    right: 1085px;
 }
 
 a {
@@ -32,7 +32,7 @@ a {
 }
 
 .user {
-    margin-left: 90px;
+    margin-left: 150px;
     margin-top: -2px;
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.14);
