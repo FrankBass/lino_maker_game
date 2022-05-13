@@ -197,7 +197,7 @@ const LEVEL_CLOUDS = [{
 const font = 'Share Tech Mono';
 const totalLevels = 5; //Cette constante est très importante: elle indique au jeu le nombre de niveaux dont il dispose.
 const coinWidth = 40;
-const LEVEL_COMPLETION_TIME = 1500;//gerer le temps de jeu part niveaux
+const LEVEL_COMPLETION_TIME = 5000;//gerer le temps de jeu part niveaux
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 50); //Chacun de nos tableaux doit pouvoir contenir au maximum 2 objets/seconde.
 const FLYING = 0; //Ce type de mouvement monte et descend au fur et à mesure qu'il se déplace, allant de droite à gauche.
 const WALKING = 1; //Ce type de mouvement va en ligne droite de droite à gauche ou, dans certains cas, ne bouge pas.
@@ -546,7 +546,7 @@ function startLevel() {
     //Génère des nouvelles pièces à des positions aléatoires.Crée un maximum de 2 / seconde.
     for (let i = 0; i < MAX_VARIABLES; i++) {
         let x = Math.floor(((Math.random() + 1) * gameArea.canvas.width) + (i * gameArea.canvas.width / 2));
-        var y = Math.floor(Math.random() * 150 + 70); //150 est la hauteur de la toile - ligne de base (150) - hauteur du caractère - 30 (espace en haut)
+        var y = Math.floor(Math.random() * 150 + 30); //150 est la hauteur de la toile - ligne de base (150) - hauteur du caractère - 30 (espace en haut)
         coins[i] = new Component();
         coins[i].init(coinWidth, coinWidth, 'Pictures/coin.png', x, y, 'image', WALKING);
     }
@@ -855,9 +855,7 @@ function gameComplete() {
     }
 }
 
-
-
-//Ajuster le caractère à une position valide s'il sort de la bordure
+//Ajuster le caractère à une position valide s 'il sort de la bordure
 
 function correctCharacterPos() {
     if (playerCharacter.y < 0) {
@@ -911,13 +909,11 @@ function flashCoinScore() {
 }
 
 
-
-/*animation fleche d'indication de depart */
 function flashStartArrow() {
     switchArrow++;
-    if (switchArrow < 60) {
+    if (switchArrow < 70) {
         startArrow3.setSrc('Pictures/goldArrow.png');
-        startArrow2.setSrc('Pictures/goldArrow.png');
+        startArrow2.setSrc('Pictures/blackArrow.png');
         startArrow1.setSrc('Pictures/blackArrow.png');
     } else if (switchArrow < 60) {
         startArrow3.setSrc('Pictures/blackArrow.png');
@@ -926,15 +922,12 @@ function flashStartArrow() {
         startArrow2.setSrc('Pictures/blackArrow.png');
         startArrow1.setSrc('Pictures/goldArrow.png');
     } else {
-        switchArrow = 3;
+        switchArrow = 0;
     }
     startArrow1.setX(startArrow1.getOrignX() - xPos);
     startArrow2.setX(startArrow2.getOrignX() - xPos);
     startArrow3.setX(startArrow3.getOrignX() - xPos);
 }
-
-
-
 
 //Mettre à jour la zone de jeu pour une période définie dans la fonction de zone de jeu, le 20e de milliseconde actuel(50 fois par seconde)
 
@@ -943,7 +936,7 @@ function updateGameArea() {
     let optionsModal = document.getElementById('optionsModal');
     if (gamePaused) {
         pausemodal.style.display = 'block';
-        if (!musicMuted) { //Ensuite, coupez le son de la musique et gardez la musique activée pour que nous sachions qu'elle n'est pas vraiment coupée
+        if (!musicMuted) { //Then mute music, and keep musicToggled on so that we know it's not muted for real
             audio.pause();
             musicToggled = true;
         }
@@ -958,7 +951,7 @@ function updateGameArea() {
     } else {
         pausemodal.style.display = 'none';
         optionsModal.style.display = 'none';
-        if (musicToggled) { //Ensuite, réactivez la musique et annulez musicToggled afin que cela ne se déclenche pas à nouveau
+        if (musicToggled) { //Then unmute the music, and cancel musicToggled so that this won't re-trigger
             audio.load();
             musicToggled = false;
         }
@@ -999,14 +992,14 @@ function updateGameArea() {
     }
 
     coinRotationValue++; //Nous mettons à jour la valeur de rotation des pièces avant de mettre à jour les pièces
-    if (coinRotatio nValue >= 40) {
+    if (coinRotationValue >= 40) {
         coinRotationValue = 0;
     }
 
 
 
 
-    //boucle pour la collision des pièces
+    //boucle pour collision de pièces
     for (let i = 0; i < coins.length; i++) {
         if (coins[i].isAlive()) {
             if (playerCharacter.crashWith(coins[i])) {
@@ -1030,10 +1023,10 @@ function updateGameArea() {
         }
     }
 
-    //Toile claire avant chaque mise à jour
+    //toile claire avant chaque mise à jour
     gameArea.clear();
 
-    //mise a jour background
+    //update background
     background.moveBackgrounds(background2);
     background.update();
     background2.update();
@@ -1046,7 +1039,7 @@ function updateGameArea() {
         }
     }
 
-    //mise à jour du code
+    //score update
     scoreBoard.text = 'SCORE: ' + score;
     scoreBoard.update();
 
@@ -1056,14 +1049,14 @@ function updateGameArea() {
     coinScoreBoardImg.update();
     highscoreBoard.update();
 
-    //debut des fleches
+    //startArrow
     flashStartArrow();
     startArrow1.update();
     startArrow2.update();
     startArrow3.update();
 
 
-    // mise a jou du timer
+    //Timer update
     timeBoard.text = Math.ceil(timeLeft);
     timeBoard.update();
     timeBoardImg.update();
@@ -1086,7 +1079,7 @@ function updateGameArea() {
         coins[i].update();
     }
 
-    //mise a jour des jouer a chaque niveux
+    //player character update
     playerCharacter.newPos();
     correctCharacterPos();
     playerCharacter.update();
@@ -1116,8 +1109,6 @@ function updateGameArea() {
 
 
             }
-
-
             //Cela indique aux oiseaux ennemis s'ils doivent monter ou descendre
             if (enemyCharacters[i].moveType === FLYING) {
                 if (flyUp === true) {
@@ -1130,7 +1121,7 @@ function updateGameArea() {
             if (enemyCharacters[i].moveType === ROTATING) {
                 enemyCharacters[i].angle += 10 * Math.PI / 180;
             }
-        } else { // si mort ; l'ennemi sera "pressé", tombera au sol et disparaitra.
+        } else { // si mort ; l'ennemi sera "pressé", tombera au sol et s'évanouira.
             enemyCharacters[i].height = enemyCharacters[i].initHeight / 3;
             enemyCharacters[i].x -= backgroundDx;
             enemyCharacters[i].y += 10;
