@@ -31,6 +31,12 @@ html, body
     border-radius: 43px;
     background-color: #231750;/*gerer la couleur de fond de la carte de message game over*/
     color: white;
+    color: white;
+    right: auto;
+    left: 130px;
+    top: 23px;
+    margin-top: 454px;
+    margin-top: 101px;
 }
 
 .close {
@@ -69,6 +75,7 @@ html, body
 }
 
 .gamePause {
+  /*margin-bottom: 99px;*/
     text-align: center;
     font-size: 50px;
     color: #33ffd7;

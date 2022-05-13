@@ -1,11 +1,10 @@
 
-
-
 html, body
 {
  height: 100%;
  overflow: hidden
 }
+
 .modal {
     display: none;
     position: fixed;

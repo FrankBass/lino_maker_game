@@ -197,7 +197,7 @@ const LEVEL_CLOUDS = [{
 const font = 'Share Tech Mono';
 const totalLevels = 5; //Cette constante est très importante: elle indique au jeu le nombre de niveaux dont il dispose.
 const coinWidth = 40;
-const LEVEL_COMPLETION_TIME = 3500;//gerer le temps de jeu part niveaux
+const LEVEL_COMPLETION_TIME = 1500;//gerer le temps de jeu part niveaux
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 50); //Chacun de nos tableaux doit pouvoir contenir au maximum 2 objets/seconde.
 const FLYING = 0; //Ce type de mouvement monte et descend au fur et à mesure qu'il se déplace, allant de droite à gauche.
 const WALKING = 1; //Ce type de mouvement va en ligne droite de droite à gauche ou, dans certains cas, ne bouge pas.
@@ -565,6 +565,7 @@ var gameArea = {
         this.canvas.width = 1000;// GERER LA TAILLE DE L'IMAGE DE JEU
         this.canvas.height = 500;// GERER LA TAILLE DE L'IMAGE DE JEU
         this.context = this.canvas.getContext('2d');
+        console.log(this.canvas.getContext('2d'));
 
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         document.body.insertBefore(document.getElementById('banner'), document.body.childNodes[0])
@@ -998,7 +999,7 @@ function updateGameArea() {
     }
 
     coinRotationValue++; //Nous mettons à jour la valeur de rotation des pièces avant de mettre à jour les pièces
-    if (coinRotationValue >= 40) {
+    if (coinRotatio nValue >= 40) {
         coinRotationValue = 0;
     }
 
