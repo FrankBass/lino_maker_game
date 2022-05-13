@@ -54,13 +54,13 @@ const specialKeys = {
 //La variable y2 dicte à quelle hauteur l'unité démarre
 const LEVEL_ENEMIES = [
 
-  //enmemies level 1
+    //enmemies level 1
     [{
         name: 'FloatingFish',
         width: 64,
         height: 56,
-        y2: 405//gerer la hauteur du personnage par rapoort au sol
-    },{
+        y2: 405 //gerer la hauteur du personnage par rapoort au sol
+    }, {
         name: 'zombie',
         width: 50,
         height: 45,
@@ -69,38 +69,38 @@ const LEVEL_ENEMIES = [
 
 
 
-//enmemies level 2
+    //enmemies level 2
     [{
         name: 'FloatingFish',
         width: 84,
         height: 76,
         y2: 400
-    },{
+    }, {
         name: 'BlackBlob',
         width: 60,
         height: 53,
         y2: 370
-    },{
-      name: 'SpinningSword',
-      width: 80,
-      height: 14,
-      y2: 170
+    }, {
+        name: 'SpinningSword',
+        width: 80,
+        height: 14,
+        y2: 170
     }],
 
 
 
-//enmemies level 3
+    //enmemies level 3
     [{
         name: 'FloatingFish',
         width: 64,
         height: 56,
         y2: 400
-    },{
-      name: 'SpinningSword',
-      width: 80,
-      height: 14,
-      y2: 170
-    },{
+    }, {
+        name: 'SpinningSword',
+        width: 80,
+        height: 14,
+        y2: 170
+    }, {
         name: 'SlidingSkull',
         width: 60,
         height: 50,
@@ -108,7 +108,7 @@ const LEVEL_ENEMIES = [
     }],
 
 
-//enmemies level 4
+    //enmemies level 4
     [{
         name: 'FloatingFish',
         width: 284,
@@ -122,7 +122,7 @@ const LEVEL_ENEMIES = [
     }],
 
 
-//enmemies level 5
+    //enmemies level 5
     [{
         name: 'FloatingFish',
         width: 64,
@@ -197,7 +197,7 @@ const LEVEL_CLOUDS = [{
 const font = 'Share Tech Mono';
 const totalLevels = 5; //Cette constante est très importante: elle indique au jeu le nombre de niveaux dont il dispose.
 const coinWidth = 40;
-const LEVEL_COMPLETION_TIME = 5000;//gerer le temps de jeu part niveaux
+const LEVEL_COMPLETION_TIME = 1500; //gerer le temps de jeu part niveaux
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 50); //Chacun de nos tableaux doit pouvoir contenir au maximum 2 objets/seconde.
 const FLYING = 0; //Ce type de mouvement monte et descend au fur et à mesure qu'il se déplace, allant de droite à gauche.
 const WALKING = 1; //Ce type de mouvement va en ligne droite de droite à gauche ou, dans certains cas, ne bouge pas.
@@ -546,7 +546,7 @@ function startLevel() {
     //Génère des nouvelles pièces à des positions aléatoires.Crée un maximum de 2 / seconde.
     for (let i = 0; i < MAX_VARIABLES; i++) {
         let x = Math.floor(((Math.random() + 1) * gameArea.canvas.width) + (i * gameArea.canvas.width / 2));
-        var y = Math.floor(Math.random() * 150 + 30); //150 est la hauteur de la toile - ligne de base (150) - hauteur du caractère - 30 (espace en haut)
+        var y = Math.floor(Math.random() * 150 + 70); //150 est la hauteur de la toile - ligne de base (150) - hauteur du caractère - 30 (espace en haut)
         coins[i] = new Component();
         coins[i].init(coinWidth, coinWidth, 'Pictures/coin.png', x, y, 'image', WALKING);
     }
@@ -562,9 +562,10 @@ function startLevel() {
 var gameArea = {
     init: function() {
         this.canvas = document.getElementById('canvas');
-        this.canvas.width = 1000;// GERER LA TAILLE DE L'IMAGE DE JEU
-        this.canvas.height = 500;// GERER LA TAILLE DE L'IMAGE DE JEU
+        this.canvas.width = 1000; // GERER LA TAILLE DE L'IMAGE DE JEU
+        this.canvas.height = 500; // GERER LA TAILLE DE L'IMAGE DE JEU
         this.context = this.canvas.getContext('2d');
+        console.log(this.canvas.getContext('2d'));
 
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         document.body.insertBefore(document.getElementById('banner'), document.body.childNodes[0])
@@ -637,7 +638,7 @@ function Component() {
         this.height = height;
 
         //changer la position des composants
-        this.speedX = 0;//changerla vitesse de deplace du perso
+        this.speedX = 0; //changerla vitesse de deplace du perso
         this.speedY = 0;
         this.x = x;
         this.y = y;
@@ -854,7 +855,9 @@ function gameComplete() {
     }
 }
 
-//Ajuster le caractère à une position valide s 'il sort de la bordure
+
+
+//Ajuster le caractère à une position valide s'il sort de la bordure
 
 function correctCharacterPos() {
     if (playerCharacter.y < 0) {
@@ -908,11 +911,13 @@ function flashCoinScore() {
 }
 
 
+
+/*animation fleche d'indication de depart */
 function flashStartArrow() {
     switchArrow++;
-    if (switchArrow < 70) {
+    if (switchArrow < 60) {
         startArrow3.setSrc('Pictures/goldArrow.png');
-        startArrow2.setSrc('Pictures/blackArrow.png');
+        startArrow2.setSrc('Pictures/goldArrow.png');
         startArrow1.setSrc('Pictures/blackArrow.png');
     } else if (switchArrow < 60) {
         startArrow3.setSrc('Pictures/blackArrow.png');
@@ -921,12 +926,15 @@ function flashStartArrow() {
         startArrow2.setSrc('Pictures/blackArrow.png');
         startArrow1.setSrc('Pictures/goldArrow.png');
     } else {
-        switchArrow = 0;
+        switchArrow = 3;
     }
     startArrow1.setX(startArrow1.getOrignX() - xPos);
     startArrow2.setX(startArrow2.getOrignX() - xPos);
     startArrow3.setX(startArrow3.getOrignX() - xPos);
 }
+
+
+
 
 //Mettre à jour la zone de jeu pour une période définie dans la fonction de zone de jeu, le 20e de milliseconde actuel(50 fois par seconde)
 
@@ -935,7 +943,7 @@ function updateGameArea() {
     let optionsModal = document.getElementById('optionsModal');
     if (gamePaused) {
         pausemodal.style.display = 'block';
-        if (!musicMuted) { //Then mute music, and keep musicToggled on so that we know it's not muted for real
+        if (!musicMuted) { //Ensuite, coupez le son de la musique et gardez la musique activée pour que nous sachions qu'elle n'est pas vraiment coupée
             audio.pause();
             musicToggled = true;
         }
@@ -950,13 +958,13 @@ function updateGameArea() {
     } else {
         pausemodal.style.display = 'none';
         optionsModal.style.display = 'none';
-        if (musicToggled) { //Then unmute the music, and cancel musicToggled so that this won't re-trigger
+        if (musicToggled) { //Ensuite, réactivez la musique et annulez musicToggled afin que cela ne se déclenche pas à nouveau
             audio.load();
             musicToggled = false;
         }
     }
     //lorsque le numéro de trame atteint 3000 (point auquel les obstacles se terminent) niveau de fin
-      //vérifier le niveau actuel, s'il y en a plus de 5 (parce qu'il y a actuellement cinq niveaux), afficher le jeu complet modal
+    //vérifier le niveau actuel, s'il y en a plus de 5 (parce qu'il y a actuellement cinq niveaux), afficher le jeu complet modal
     if (gameArea.time >= LEVEL_COMPLETION_TIME) {
         gameArea.stop();
         if (currentLevel === totalLevels) gameComplete();
@@ -998,7 +1006,7 @@ function updateGameArea() {
 
 
 
-    //boucle pour collision de pièces
+    //boucle pour la collision des pièces
     for (let i = 0; i < coins.length; i++) {
         if (coins[i].isAlive()) {
             if (playerCharacter.crashWith(coins[i])) {
@@ -1022,10 +1030,10 @@ function updateGameArea() {
         }
     }
 
-    //toile claire avant chaque mise à jour
+    //Toile claire avant chaque mise à jour
     gameArea.clear();
 
-    //update background
+    //mise a jour background
     background.moveBackgrounds(background2);
     background.update();
     background2.update();
@@ -1038,7 +1046,7 @@ function updateGameArea() {
         }
     }
 
-    //score update
+    //mise à jour du code
     scoreBoard.text = 'SCORE: ' + score;
     scoreBoard.update();
 
@@ -1048,14 +1056,14 @@ function updateGameArea() {
     coinScoreBoardImg.update();
     highscoreBoard.update();
 
-    //startArrow
+    //debut des fleches
     flashStartArrow();
     startArrow1.update();
     startArrow2.update();
     startArrow3.update();
 
 
-    //Timer update
+    // mise a jou du timer
     timeBoard.text = Math.ceil(timeLeft);
     timeBoard.update();
     timeBoardImg.update();
@@ -1078,7 +1086,7 @@ function updateGameArea() {
         coins[i].update();
     }
 
-    //player character update
+    //mise a jour des jouer a chaque niveux
     playerCharacter.newPos();
     correctCharacterPos();
     playerCharacter.update();
@@ -1108,6 +1116,8 @@ function updateGameArea() {
 
 
             }
+
+
             //Cela indique aux oiseaux ennemis s'ils doivent monter ou descendre
             if (enemyCharacters[i].moveType === FLYING) {
                 if (flyUp === true) {
@@ -1120,7 +1130,7 @@ function updateGameArea() {
             if (enemyCharacters[i].moveType === ROTATING) {
                 enemyCharacters[i].angle += 10 * Math.PI / 180;
             }
-        } else { // si mort ; l'ennemi sera "pressé", tombera au sol et s'évanouira.
+        } else { // si mort ; l'ennemi sera "pressé", tombera au sol et disparaitra.
             enemyCharacters[i].height = enemyCharacters[i].initHeight / 3;
             enemyCharacters[i].x -= backgroundDx;
             enemyCharacters[i].y += 10;
@@ -1153,7 +1163,7 @@ function incrementScore(value) {
     currentScore += value;
 }
 
-function incrementTime(value) {//Les deux incrémentent le temps et mettent à jour la valeur de la minuterie à l'écran
+function incrementTime(value) { //Les deux incrémentent le temps et mettent à jour la valeur de la minuterie à l'écran
     gameArea.time += value;
     timeLeft = (LEVEL_COMPLETION_TIME - gameArea.time) / 100;
 }
@@ -1196,8 +1206,8 @@ function moveUp(state) {
         }
     } else if (playerCharacter.doubleJumpAllowed === true) {
 
-/* Ne fait actuellement rien, depuis le UP/W initial
-       * La logique des touches ne permet pas d'appeler la fonction moveUP. */
+        /* Ne fait actuellement rien, depuis le UP/W initial
+         * La logique des touches ne permet pas d'appeler la fonction moveUP. */
         playerCharacter.speedY = -7;
         playerCharacter.doubleJumpAllowed = false;
     }
@@ -1271,3 +1281,24 @@ function resumeGame() {
         startLevel();
     }
 }
+
+let ajax = document.querySelector('.ajax');
+ajax.addEventListener('click', () => {
+    let highscore = highscoreBoard.text;
+    var linoMaker = {
+        highscore: highscoreBoard.text,
+    }
+
+    console.log('Billy');
+    var http = new XMLHttpRequest();
+    http.open("POST", "traitement.php", true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let result = this.responseText;
+            console.table(result);
+        };
+    };
+    http.send(JSON.stringify(linoMaker));
+
+});
