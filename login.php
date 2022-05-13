@@ -1,103 +1,42 @@
-<?php
-    include('init.php');
-    // Si la session membre exixte, alors je redirige vers l'acceuil:
-    if(isset($_SESSION['membre'])){
-        header('location:home.php');
-    }
-
-    // Si le formulaire est posté:
-    if ($_POST){
-        //je verifie si je recupère bien les infos
-        // var_dump($_POST);
-        //Je recupère les infos correspondants à l'email dans la table:
-        $r = $pdo -> query ("SELECT * FROM membre WHERE email= '$_POST[email]' ");
-
-        //Si le nombre de resultat est plus grand ou égal à 1, alors le compte existe:
-        if ($r->rowCount()>= 1){
-            //Je stock toutes les infos sous forme d'array
-            $membre =$r -> fetch(PDO::FETCH_ASSOC);
-            //je verifie si j'ai bien toutes les infos dans l'array:
-                //print_r($membre);
-            // Si le mot de passe posté correspond à celui présent dans $membre:
-            if(password_verify($_POST['mdp'], $membre ['mdp'])) {
-                // je test si le mdp fonctionne
-                $content.='<p>email+MDP: OK </p>';
-
-                //j'enregistre les infos dans la session
-                $_SESSION['membre']['nom']=$membre ['nom'];
-                $_SESSION['membre']['prenom']=$membre ['prenom'];
-                $_SESSION['membre']['email']=$membre ['email'];
-
-                //Je redirige l'utilisateur vers la page d'acceuil:
-                header('location:home.php');
-            }
-            else{
-                //le mot de passe est incorrect:
-                $content .='<p>Mots de passe incorrect</p>';
-            }
-        }
-        else {
-            $content .= '<p> Compte inexistant</p>';
-        }
-    }
-?>
-<!DOCTYPE html>
-<html lang="fr">
-
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-    <link rel="shortcut icon" href="img/LINO MAKER.png" type="image/x-icon">
-    <link rel="stylesheet" href="login.css">
-    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="style.css" />
 </head>
+<body class="font">
+<?php
+require('config.php');
+session_start();
 
-<body>
-    <main>
-        <div id="login-button">
-            <img src="img/profil.png" alt="">
-        </img>
-        </div>
-        <div id="logo">
-            <img src='img/LINO MAKER.png' border='0' alt='logo2' id="logo">
-        </div>
-        <div id="container">
-        <h1>Log In</h1>
-        <span class="close-btn">
-            <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
-        </span>
-
-        <form method="post">
-            <input type="email" name="email" placeholder="Votre email">
-            <input type="password" name="mdp" placeholder="Votre password">
-            <input class="inp" type="submit" value="LANCEZ VOUS">
-            <input class="inp" type="reset"value="RESET">
-            <div id="remember-container">
-            <input type="checkbox" id="checkbox-2-1" class="checkbox" checked="checked"/>
-            <span id="remember">Remember me</span>
-            <span id="forgotten">Forgotten password</span>
-            </div>
-        </form>
-         <a href="inscription.php">Créer un compte</a>
-        </div>
-
-        <!-- Forgotten Password Container -->
-        <div id="forgotten-container">
-        <h1>Forgotten</h1>
-        <span class="close-btn">
-            <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
-        </span>
-
-        <form>
-            <input type="email" name="email" placeholder="Votre email">
-            <input type="reset" class="orange-btn" value="Get new password">
-        </form>
-
-    </main>
-    <script src="login.js"></script>
+if (isset($_POST['username'])){
+	$username = stripslashes($_REQUEST['username']);
+	$username = mysqli_real_escape_string($conn, $username);
+	$password = stripslashes($_REQUEST['password']);
+	$password = mysqli_real_escape_string($conn, $password);
+    $query = "SELECT * FROM `users` WHERE username='$username' and password='".hash('sha256', $password)."'";
+	$result = mysqli_query($conn,$query) or die(mysql_error());
+	$rows = mysqli_num_rows($result);
+	if($rows==1){
+	    $_SESSION['username'] = $username;
+	    header("Location: index.php");
+	}else{
+		$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+	}
+}
+?>
+<form class="box" action="" method="post" name="login">
+<h1 class="box-logo box-title"><a href="#"><img src="img/LINO MAKER.png" alt="LM" width="370px"></a></h1>
+<h1 class="box-title">Connexion</h1>
+<input type="text" class="box-input" name="username" placeholder="Nom d'utilisateur">
+<input type="password" class="box-input" name="password" placeholder="Mot de passe">
+<div style="display: flex; gap:5px">
+	<input type="submit" value="Lancer vous " name="submit" class="box-button">
+	<input class="box-button" type="reset">
+</div>
+<p class="box-register">Vous êtes nouveau ici? <a href="register.php">S'inscrire</a></p>
+<?php if (! empty($message)) { ?>
+    <p class="errorMessage"><?php echo $message; ?></p>
+<?php } ?>
+</form>
 </body>
-
 </html>
