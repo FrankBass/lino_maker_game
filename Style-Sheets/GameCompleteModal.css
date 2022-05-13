@@ -21,10 +21,9 @@
     width: 50%;
     -moz-box-shadow: inset 0 0 8px rgba(0,0,0, 0.25);
     -webkit-box-shadow: inset 0 0 8px rgba(0,0,0, 0.25);
-    box-shadow: inset 0 0 28px #a77f4b;
-    border: 3px solid #6f431a;
-    border-radius: 20px;
-    background-color: #000000;
+    box-shadow: inset 0 0 8px #40FFAF;
+    border-radius: 43px;
+    background-color: #231750;/*gerer la couleur de fond de la carte de message game over*/
     color: white;
 }
 

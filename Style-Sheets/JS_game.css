@@ -1,6 +1,7 @@
 body {
-  background-color: black;
+  background-color: white;
   font-family: 'Heebo';
+  font-size: 23px;
 }
 
 #banner {
@@ -11,10 +12,11 @@ body {
 }
 
 canvas {
-  border:1px solid black;
+  border:0px solid black;
   background-color: #f1f1f1;
   width: 90%;
   margin-left: 5%;
+  border-radius:32px
 }
 
 .restartButton{
@@ -40,7 +42,7 @@ canvas {
 .resumeButton:hover{
   /* IE 11 and lower don't support filter */
   -webkit-filter: saturate(1.6);
-  filter: saturate(1.6);
+  filter: saturate(3.6);
 }
 
 .startButton{
@@ -53,7 +55,7 @@ canvas {
 .startButton:hover{
   /* IE 11 and lower don't support filter */
   -webkit-filter: saturate(1.6);
-  filter: saturate(1.6);
+  filter: saturate(3.6);
 }
 
 .button {
@@ -77,13 +79,13 @@ canvas {
 .button:hover {
   /* IE 11 and lower don't support filter */
   -webkit-filter: saturate(1.6);
-  filter: saturate(1.6);
+  filter: saturate(3.6);
 }
 
 .button:active {
   /* IE 11 and lower don't support filter */
   -webkit-filter: saturate(1.6);
-  filter: saturate(1.6);
+  filter: saturate(3.6);
   transform: translateY(1px);
 }
 .buttonImages{
