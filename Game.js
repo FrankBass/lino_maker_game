@@ -53,60 +53,86 @@ const specialKeys = {
 
 //La variable y2 dicte à quelle hauteur l'unité démarre
 const LEVEL_ENEMIES = [
+
+  //enmemies level 1
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
+        width: 64,
+        height: 56,
+        y2: 405//gerer la hauteur du personnage par rapoort au sol
+    },{
         name: 'zombie',
-        width: 40,
+        width: 50,
         height: 45,
-        y2: 205
+        y2: 400 //gerer la hauteur du personnage par rapoort au sol
     }],
+
+
+
+//enmemies level 2
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
+        width: 84,
+        height: 76,
+        y2: 400
+    },{
         name: 'BlackBlob',
         width: 60,
         height: 53,
-        y2: 197
+        y2: 370
+    },{
+      name: 'SpinningSword',
+      width: 80,
+      height: 14,
+      y2: 170
     }],
+
+
+
+//enmemies level 3
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
+        width: 64,
+        height: 56,
+        y2: 400
+    },{
+      name: 'SpinningSword',
+      width: 80,
+      height: 14,
+      y2: 170
+    },{
         name: 'SlidingSkull',
         width: 60,
         height: 50,
-        y2: 200
+        y2: 400
     }],
+
+
+//enmemies level 4
     [{
         name: 'FloatingFish',
-        width: 44,
-        height: 36,
+        width: 284,
+        height: 206,
+        y2: 250
+    }, {
+        name: 'CyclopsCrab',
+        width: 60,
+        height: 37,
+        y2: 400
+    }],
+
+
+//enmemies level 5
+    [{
+        name: 'FloatingFish',
+        width: 64,
+        height: 56,
         y2: 200
     }, {
         name: 'CyclopsCrab',
         width: 60,
         height: 37,
-        y2: 220
-    }],
-    [{
-        name: 'FloatingFish',
-        width: 44,
-        height: 36,
-        y2: 200
-    }, {
-        name: 'CyclopsCrab',
-        width: 60,
-        height: 37,
-        y2: 220
+        y2: 400
     }, {
         name: 'SpinningSword',
         width: 80,
@@ -116,14 +142,16 @@ const LEVEL_ENEMIES = [
         name: 'ScarletStabber',
         width: 70,
         height: 60,
-        y2: 185
+        y2: 400
     }]
 ];
 
+
+
 const LEVEL_PLAYER_CHARACTERS = [{
     name: 'good_guy',
-    x2: 100,
-    y2: 120
+    x2: 200,
+    y2: 220
 }, {
     name: 'good_girl',
     x2: 100,
@@ -169,7 +197,7 @@ const LEVEL_CLOUDS = [{
 const font = 'Share Tech Mono';
 const totalLevels = 5; //Cette constante est très importante: elle indique au jeu le nombre de niveaux dont il dispose.
 const coinWidth = 40;
-const LEVEL_COMPLETION_TIME = 1000; //gerer le temps de jeu part niveaux
+const LEVEL_COMPLETION_TIME = 5000;//gerer le temps de jeu part niveaux
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 50); //Chacun de nos tableaux doit pouvoir contenir au maximum 2 objets/seconde.
 const FLYING = 0; //Ce type de mouvement monte et descend au fur et à mesure qu'il se déplace, allant de droite à gauche.
 const WALKING = 1; //Ce type de mouvement va en ligne droite de droite à gauche ou, dans certains cas, ne bouge pas.
@@ -534,8 +562,8 @@ function startLevel() {
 var gameArea = {
     init: function() {
         this.canvas = document.getElementById('canvas');
-        this.canvas.width = 900;
-        this.canvas.height = 400;
+        this.canvas.width = 1000;// GERER LA TAILLE DE L'IMAGE DE JEU
+        this.canvas.height = 500;// GERER LA TAILLE DE L'IMAGE DE JEU
         this.context = this.canvas.getContext('2d');
 
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
@@ -609,12 +637,12 @@ function Component() {
         this.height = height;
 
         //changer la position des composants
-        this.speedX = 0; //changerla vitesse de deplace du perso
+        this.speedX = 0;//changerla vitesse de deplace du perso
         this.speedY = 0;
         this.x = x;
         this.y = y;
         this.orignX = x;
-        this.gravity = 0.8; //changer la  hauteur des bons que fait le perso
+        this.gravity = 0.7; //changer la  hauteur des bons que fait le perso
         //indique si le personnage est au sol ou non
         this.hitGround = true;
         this.doubleJumpAllowed = true;
@@ -928,7 +956,7 @@ function updateGameArea() {
         }
     }
     //lorsque le numéro de trame atteint 3000 (point auquel les obstacles se terminent) niveau de fin
-    //vérifier le niveau actuel, s'il y en a plus de 5 (parce qu'il y a actuellement cinq niveaux), afficher le jeu complet modal
+      //vérifier le niveau actuel, s'il y en a plus de 5 (parce qu'il y a actuellement cinq niveaux), afficher le jeu complet modal
     if (gameArea.time >= LEVEL_COMPLETION_TIME) {
         gameArea.stop();
         if (currentLevel === totalLevels) gameComplete();
@@ -1077,6 +1105,8 @@ function updateGameArea() {
                 }
             } else {
                 enemyCharacters[i].x += (-2 - backgroundDx);
+
+
             }
             //Cela indique aux oiseaux ennemis s'ils doivent monter ou descendre
             if (enemyCharacters[i].moveType === FLYING) {
@@ -1123,7 +1153,7 @@ function incrementScore(value) {
     currentScore += value;
 }
 
-function incrementTime(value) { //Les deux incrémentent le temps et mettent à jour la valeur de la minuterie à l'écran
+function incrementTime(value) {//Les deux incrémentent le temps et mettent à jour la valeur de la minuterie à l'écran
     gameArea.time += value;
     timeLeft = (LEVEL_COMPLETION_TIME - gameArea.time) / 100;
 }
@@ -1166,8 +1196,8 @@ function moveUp(state) {
         }
     } else if (playerCharacter.doubleJumpAllowed === true) {
 
-        /* Ne fait actuellement rien, depuis le UP/W initial
-         * La logique des touches ne permet pas d'appeler la fonction moveUP. */
+/* Ne fait actuellement rien, depuis le UP/W initial
+       * La logique des touches ne permet pas d'appeler la fonction moveUP. */
         playerCharacter.speedY = -7;
         playerCharacter.doubleJumpAllowed = false;
     }
