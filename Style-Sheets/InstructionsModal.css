@@ -1,3 +1,11 @@
+
+
+
+html, body
+{
+ height: 100%;
+ overflow: hidden
+}
 .modal {
     display: none;
     position: fixed;
@@ -56,14 +64,24 @@
   margin-left: 50%;
 }
 .back{
+
   width: 70%;
-  height: auto;
-  margin-top: 11%;
+height: auto;
+margin-top: 11%;
+/*width: 3%;
+    height: auto;
+    margin-top: 11%;
+    left: 449px;
+    position: absolute;
+    top: 12px;*/
 }
+
+
 #optionsModal{
   text-align: center;
 }
 .close {
+  position: absolute;
     color: #aaa;
     float: right;
     font-size: 28px;

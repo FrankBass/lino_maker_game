@@ -1,4 +1,10 @@
 
+html, body
+{
+ height: 100%;
+ overflow: hidden
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -55,7 +61,7 @@
 }
 
 
-/* carde de message game over */
+/* carte de message game over */
 .gameOverDesc {
     text-align: center;
     font-size: 20px;
