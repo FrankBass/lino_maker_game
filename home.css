@@ -1,0 +1,45 @@
+.body {
+    position: relative;
+}
+
+.btn {
+    text-align: center;
+    width: 40%;
+    margin-left: 70px;
+    padding: 20px 30px;
+    cursor: pointer;
+    display: block;
+    background: rgb(255, 114, 119);
+    background: linear-gradient(0deg, rgba(255, 114, 119, 1) 0%, rgb(39, 17, 27) 100%);
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    color: white;
+    position: absolute;
+    right: 1085px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: rgb(247, 115, 33);
+    background: linear-gradient(0deg, rgba(247, 115, 33, 1) 0%, rgba(250, 208, 91, 1) 100%);
+    color: white;
+    transition: .7s;
+    transform: translateY(-2px);
+}
+
+.user {
+    margin-left: 150px;
+    margin-top: -2px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 30px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
