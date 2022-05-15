@@ -26,8 +26,7 @@
     <div class="sucess">
 
         <!-- <h1 style="color: #fff;">Bienvenue <?php echo $_SESSION['username']; ?>!</h1> -->
-        <!-- <button style="position:absolute;left:1330px;bottom:648px; background-color: red; padding:10px; border-radius:30px"><a style="color:#fff;" href="logout.php">Déconnexion</a></button> -->
-        <button class="ajax" style="position:absolute;left:1330px;bottom:648px; background-color: red; padding:10px; border-radius:30px">Ajax / Json</button>		
+        <button style="position:absolute;left:1330px;bottom:648px; background-color: red; padding:10px; border-radius:30px"><a style="color:#fff;" href="logout.php">Déconnexion</a></button>	
         <!-- Banner -->
         <img id="banner" src="Pictures/banner.png">
 
@@ -283,10 +282,12 @@
 		</button>
                 <button class="button" id="buttonOptions" onClick="gameOptions()">
 			<img class="buttonImages" src="Pictures/Settingsbtn.png" alt="OptionGame">
+
 		</button>
             </div>
+            
         </div>
-
+        <button class="ajax" style="background-color: red; padding:10px; border-radius:30px">Ajax / Json</button>	
 </body>
 
 </html>

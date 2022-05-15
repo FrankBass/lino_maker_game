@@ -1289,7 +1289,7 @@ ajax.addEventListener('click', () => {
         highscore: highscoreBoard.text,
     }
 
-    console.log('Billy');
+    // console.log('Billy');
     var http = new XMLHttpRequest();
     http.open("POST", "traitement.php", true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
